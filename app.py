@@ -9,8 +9,6 @@ st.set_page_config(
 )
 
 # --- 1. Definición de los Mazos de Cartas ---
-# Basado en los nombres de tus archivos de imagen.
-
 mazo_emociones = [
     {"titulo": "Afecto", "imagen": "afecto.png"},
     {"titulo": "Alegría", "imagen": "alegria.png"},
@@ -31,21 +29,19 @@ mazo_emociones = [
     {"titulo": "Nostalgia", "imagen": "nostalgia.png"},
     {"titulo": "Orgullo", "imagen": "orgullo.png"},
     {"titulo": "Ternura", "imagen": "ternura.png"},
-    {"titulo": "Valentía", "imagen": "valenta.png"}, # Nota: el archivo se llama 'valenta.png'
+    {"titulo": "Valentía", "imagen": "valenta.png"},
     {"titulo": "Vergüenza", "imagen": "verguenza.png"},
 ]
 
-
 # --- 2. Diseño de la Interfaz con Streamlit ---
 
-# Título de la aplicación
 st.title("🔮 Tarot de las Emociones")
 st.write("Una herramienta de arteterapia para la reflexión. Haz clic para sacar una carta.")
 
-# Portada (opcional, pero se ve genial)
-# Asegúrate de que el archivo 'Portada.png' esté subido.
+# Portada
 try:
-   st.image(st.session_state.arquetipo_elegido["imagen"], use_container_width=True)
+    # CORRECCIÓN 1: Simplemente llama a tu archivo de portada
+    st.image("Portada.png", use_container_width=True) 
 except Exception:
     st.info("Sube un archivo llamado 'Portada.png' para mostrar una imagen de bienvenida.")
 
@@ -53,23 +49,18 @@ st.markdown("---")
 
 # Botón para sacar una carta
 if st.button("Revelar una Emoción"):
-    # Elige una carta al azar del mazo
     carta_seleccionada = random.choice(mazo_emociones)
-    # Guarda la carta seleccionada en el estado de la sesión para que no se pierda
     st.session_state.carta_actual = carta_seleccionada
 
 # --- 3. Mostrar la Carta Seleccionada ---
-# Si ya se ha sacado una carta, muéstrala.
 if 'carta_actual' in st.session_state:
     carta = st.session_state.carta_actual
     
-    # Contenedor para la carta con un borde
     with st.container(border=True):
-        # Mostrar el título de la carta
         st.subheader(carta["titulo"])
         
-        # Mostrar la imagen
         try:
-            st.image(carta["imagen"], use_column_width=True)
+            # CORRECCIÓN 2: Cambia el comando viejo por el nuevo
+            st.image(carta["imagen"], use_container_width=True) 
         except Exception:
             st.error(f"Error: No se encontró la imagen '{carta['imagen']}'. Asegúrate de que el archivo esté subido y el nombre sea correcto.")
