@@ -45,7 +45,7 @@ st.write("Una herramienta de arteterapia para la reflexión. Haz clic para sacar
 # Portada (opcional, pero se ve genial)
 # Asegúrate de que el archivo 'Portada.png' esté subido.
 try:
-    st.image("Portada.png", use_column_width=True)
+   st.image(st.session_state.arquetipo_elegido["imagen"], use_container_width=True)
 except Exception:
     st.info("Sube un archivo llamado 'Portada.png' para mostrar una imagen de bienvenida.")
 
