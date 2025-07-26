@@ -8,7 +8,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# --- 1. Definición de los Mazos de Cartas ---
+# --- 1. Definición del Mazo de Cartas ---
 mazo_emociones = [
     {"titulo": "Afecto", "imagen": "afecto.png"},
     {"titulo": "Alegría", "imagen": "alegria.png"},
@@ -40,27 +40,4 @@ st.write("Una herramienta de arteterapia para la reflexión. Haz clic para sacar
 
 # Portada
 try:
-    # CORRECCIÓN 1: Simplemente llama a tu archivo de portada
-    st.image("Portada.png", use_container_width=True) 
-except Exception:
-    st.info("Sube un archivo llamado 'Portada.png' para mostrar una imagen de bienvenida.")
-
-st.markdown("---")
-
-# Botón para sacar una carta
-if st.button("Revelar una Emoción"):
-    carta_seleccionada = random.choice(mazo_emociones)
-    st.session_state.carta_actual = carta_seleccionada
-
-# --- 3. Mostrar la Carta Seleccionada ---
-if 'carta_actual' in st.session_state:
-    carta = st.session_state.carta_actual
-    
-    with st.container(border=True):
-        st.subheader(carta["titulo"])
-        
-        try:
-            # CORRECCIÓN 2: Cambia el comando viejo por el nuevo
-            st.image(carta["imagen"], use_container_width=True) 
-        except Exception:
-            st.error(f"Error: No se encontró la imagen '{carta['imagen']}'. Asegúrate de que el archivo esté subido y el nombre sea correcto.")
+    st.image("Portada.png", use_container_width
